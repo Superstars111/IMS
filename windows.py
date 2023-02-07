@@ -1,22 +1,32 @@
 from PyQt6.QtWidgets import (
     QMainWindow,
     QLabel,
+    QWidget,
     QStatusBar,
     QToolBar,
     QGridLayout,
+    QVBoxLayout,
     QPushButton
 )
 
 
-class MainWindow(QMainWindow):
+class IMSWindow(QMainWindow):
+    """IMS Main Window"""
+
     def __init__(self):
         super().__init__(parent=None)
-        self.setWindowTitle("Inventory Management Software")
-        self.setCentralWidget(QLabel("Welcome, Tester"))
+        self.setWindowTitle("Inventory Management Software")  # TODO: Include JSON file for storing company name, etc.
+        self.generalLayout = QVBoxLayout()
+        centralWidget = QWidget(self)
+        centralWidget.setLayout(self.generalLayout)
+        self.setCentralWidget(centralWidget)
         self.setGeometry(100, 100, 500, 500)
+        self.resize(100, 100)
         self._createMenu()
         self._createToolbar()
         self._createStatusBar()
+        self._createDisplay()
+        self._createButtons()
 
     def _createMenu(self):
         menu = self.menuBar().addMenu("&Menu")
@@ -27,5 +37,11 @@ class MainWindow(QMainWindow):
 
     def _createStatusBar(self):
         status = QStatusBar()
-        status.showMessage("All systems are nonexistant")
+        status.showMessage("All systems are nonexistent")
         self.setStatusBar(status)
+
+    def _createDisplay(self):
+        pass
+
+    def _createButtons(self):
+        pass
